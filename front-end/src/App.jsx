@@ -1,9 +1,11 @@
 import React from 'react';
-import Login from './components/login_page/login';
+import AppLayout from './components/AppLayout/AppLayout';
+
+
 export default function App() {
   return (
     <>
-    <Login/>
+    <AppLayout/>
     </>
   )
 }
