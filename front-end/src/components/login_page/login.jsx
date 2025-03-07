@@ -3,7 +3,7 @@ import React from 'react'
 const login = () => {
   return (
     <div>
-      <p>hello world</p>
+      {/* <p>hello world</p> */}
     </div>
   )
 }

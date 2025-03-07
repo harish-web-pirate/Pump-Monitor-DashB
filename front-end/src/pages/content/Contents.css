@@ -1,0 +1,277 @@
+/* .dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    gap: 10px;
+    background-color: #f4f7fc;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.left {
+    width: 30%;
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.title {
+    text-align: center;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.box {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.head-green{
+    margin : -10px -10px 0;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.head-red{
+    margin : -10px -10px 0;
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.gauges {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gauge {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+}
+
+.gauge.green {
+    border-color: #28a745;
+}
+
+.gauge.red {
+    border-color: #dc3545;
+}
+
+.data {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.green {
+    color: #28a745;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+}
+
+.control {
+    width: 40%;
+    height: 50px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.middle, .right {
+    width: 35%;
+    background: #edf2f9;
+    border-radius: 10px;
+} */
+
+
+
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    gap: 20px;
+    background-color: #f4f7fc;
+    box-sizing: border-box;
+}
+
+.panel {
+    flex: 1;
+    min-width: 300px;
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.box {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.box-header {
+    margin: -15px -15px 15px -15px;
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.box-header.red {
+    background-color: #dc3545;
+}
+
+.box-header.blue {
+    background-color: #007bff;
+}
+
+.box-header.green {
+    background-color: #28a745;
+}
+
+.head-green {
+    margin: -10px -10px 5px;
+    padding: 8px;
+    color: #fff;
+    background-color: #28a745;
+    border-radius: 5px 5px 0 0;
+    font-size: 14px;
+}
+
+.head-red {
+    margin: -10px -10px 5px;
+    padding: 8px;
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 5px 5px 0 0;
+    font-size: 14px;
+}
+
+.gauges {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.gauge {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gauge p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.gauge span {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.gauge.green {
+    border-color: #28a745;
+}
+
+.gauge.red {
+    border-color: #dc3545;
+}
+
+.data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.data {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.green {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.control {
+    width: 45%;
+    height: 50px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .panel {
+        width: 90%;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gauges {
+        grid-template-columns: 1fr;
+    }
+    
+    .panel {
+        width: 95%;
+    }
+    
+    .dashboard {
+        padding: 10px;
+        gap: 15px;
+    }
+}
