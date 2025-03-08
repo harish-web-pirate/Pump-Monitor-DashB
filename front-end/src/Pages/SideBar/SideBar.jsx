@@ -24,10 +24,10 @@ const SideBar = () => {
         o
       >
         <div className="p-6 pl-16 text-lg font-bold">Dashboard Menu</div>
-        <ul className="space-y-4 p-5">
-          <li className="p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Dashboard</li>
-          <li className="p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Reports</li>
-          <li className="p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Analatics</li>
+        <ul className="space-y-4 p-5 ">
+          <li className="font-poppins p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Dashboard</li>
+          <li className="font-poppins p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Reports</li>
+          <li className="font-poppins p-2 hover:bg-[#2585f1] hover:text-white rounded cursor-pointer">Analatics</li>
           
           {/* Logout Button - Redirect to Login Page */}
           <li
