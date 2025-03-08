@@ -15,6 +15,7 @@ const Dashboard = () => {
         <header className="bg-white shadow-md p-4 flex justify-between items-center">
           <h1 className="text-xl font-semibold pl-11">Power Monitoring Dashboard</h1>
           <button className="bg-blue-600 text-white px-3 py-2 rounded-md">User</button>
+          
         </header>
 
         {/* Dashboard Content */}

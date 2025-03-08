@@ -4,29 +4,46 @@ import loginImage from "./../../Assets/power.png";
 import Google from "./../../Assets/google.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import {showToast} from "./../../components/Toast/toast.jsx";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
+  // const [userData, setUserData] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    // Dummy credentials (Replace with API authentication)
-    const validUser = "admin";
-    const validPass = "1234";
+  const handleLogin = async () => {
+    if (!username.trim() || !password.trim()) {
+      showToast("Username and password are required!", "error");
+      return;
+    }
 
-    if (username === validUser && password === validPass) {
-      navigate("/dashboard"); // Redirect to Dashboard
-    } else {
-      setError("Invalid username or password");
+    try {
+      const response = await axios.post(
+        `http://localhost/pump_prj_mrch_6/backend/login.php?t=${Date.now()}`, 
+        { username, password }
+      );
+
+      if (response.data.success) {
+        showToast(response.data.message, "success");
+        setTimeout(() => navigate("/dashboard"), 1000);
+      } else {
+        showToast(response.data.message, "error");  
+      }
+    } catch (error) {
+      showToast("Something went wrong. Please try again.", "error");
     }
   };
+  
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cover bg-center">
       <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md text-center">
-        
+      <ToastContainer />
         {/* Logo Image Centered */}
         <div className="flex justify-center">
           <img src={loginImage} alt="Login" className="w-16 h-16 mb-3" />
@@ -50,6 +67,7 @@ const Login = () => {
             onChange={(e) => setUsername(e.target.value)}
             className="w-full px-3 py-2 pl-9 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             placeholder="Enter your username"
+            required
           />
         </div>
 
@@ -63,6 +81,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-3 py-2 pl-9 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             placeholder="Enter your password"
+            required
           />
         </div>
 
