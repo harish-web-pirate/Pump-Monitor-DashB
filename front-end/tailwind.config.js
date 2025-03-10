@@ -6,7 +6,7 @@ export default {
   ],
   theme: {
     extend: {fontFamily: {
-      poppins: ["Poppins", "sans-serif"], // Register Poppins as a font class
+      font:["Montserrat", "sans-serif"]// Register Poppins as a font class
     },},
   },
   plugins: [],

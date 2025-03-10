@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "@fontsource/poppins/400.css"; // Regular
-import "@fontsource/poppins/500.css"; // Medium
-import "@fontsource/poppins/600.css"; // Semi-Bold
+import "@fontsource/montserrat"; // Defaults to weight 400
+import "@fontsource/montserrat/400.css"; // Specific weight
+import "@fontsource/montserrat/700.css"; // Bold weight
+
 
 import Login from "./Pages/Login/login";
 import DashboardLayout from "./Pages/Dashboard/Dashboard";
