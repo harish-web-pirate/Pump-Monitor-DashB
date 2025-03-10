@@ -17,7 +17,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     if (!username.trim() || !password.trim()) {
-      showToast("Username and password are required!", "error");
+      showToast("Empty Field!", "error");
       return;
     }
 
@@ -29,7 +29,7 @@ const Login = () => {
 
       if (response.data.success) {
         showToast(response.data.message, "success");
-        setTimeout(() => navigate("/dashboard"), 1000);
+        setTimeout(() => navigate("/dashboard"), 500);
       } else {
         showToast(response.data.message, "error");  
       }
