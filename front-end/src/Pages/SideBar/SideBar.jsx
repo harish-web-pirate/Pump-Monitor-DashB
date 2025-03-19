@@ -10,7 +10,7 @@ const SideBar = () => {
     <>
       {/* Sidebar Toggle Button */}
       <button
-        className="fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded-full"
+        className="fixed top-4 left-4 z-50 bg-white  p-2 rounded-full text-black "
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -18,21 +18,20 @@ const SideBar = () => {
 
       {/* Sidebar Container */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-gray-900 text-white transition-transform duration-300 z-40 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-[#53a0ff]  rounded-b-sm text-black transition-transform duration-200 z-40 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        onMouseEnter={() => setIsOpen(true)}
-        onMouseLeave={() => setIsOpen(false)}
+        o
       >
-        <div className="p-6 pl-16 text-lg font-bold">Dashboard Menu</div>
-        <ul className="space-y-4 p-5">
-          <li className="p-2 hover:bg-gray-700 rounded cursor-pointer">Dashboard</li>
-          <li className="p-2 hover:bg-gray-700 rounded cursor-pointer">Reports</li>
-          <li className="p-2 hover:bg-gray-700 rounded cursor-pointer">Analatics</li>
+        <div className="p-5 pl-16 text-lg font-font  bg-white text-black rounded-t-sm shadow-sm">Dashboard Menu</div>
+        <ul className="space-y-4 p-5 ">
+          <li className="font-font p-2 hover:bg-white hover:text-black text-white rounded cursor-pointer hover:shadow-md focus:outline-none">Dashboard</li>
+          <li className="font-font p-2 hover:bg-white hover:text-black text-white rounded cursor-pointer hover:shadow-md focus:outline-none">Reports</li>
+          <li className="font-font  p-2 hover:bg-white hover:text-black text-white rounded cursor-pointer hover:shadow-md focus:outline-none">Analatics</li>
           
           {/* Logout Button - Redirect to Login Page */}
           <li
-            className="p-2 hover:bg-red-600 rounded cursor-pointer"
+            className="p-2 hover:bg-white hover:text-black text-white rounded cursor-pointer hover:shadow-md focus:outline-none font-font "
             onClick={() => navigate("/")} // ✅ Redirects to Login Page
           >
             Logout

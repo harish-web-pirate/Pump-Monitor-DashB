@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {fontFamily: {
+      font:["Montserrat", "sans-serif"]// Register Poppins as a font class
+    },},
   },
   plugins: [],
 }
