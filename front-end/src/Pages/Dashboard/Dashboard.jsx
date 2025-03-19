@@ -39,36 +39,36 @@ const Dashboard = () => {
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Navbar - Keeping original size */}
+        {/* Navbar - Original size */}
         <header className="bg-white shadow-sm p-3 flex justify-between items-center">
           <h1 className="text-xl font-semibold pl-4">Power Monitoring Dashboard</h1>
           <button className="bg-blue-600 text-white px-3 py-1.5 rounded-md">Export</button>
         </header>
 
-        {/* Dashboard Content - Slightly reduced gap and padding */}
+        {/* Dashboard Content */}
         <main className="p-2.5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5 overflow-auto">
           {pumps.map((pump) => (
             <div key={pump} className="bg-white shadow-sm rounded-lg p-2">
               <h2 className="text-lg font-semibold text-center text-blue-600">Pump {pump}</h2>
 
-              {/* Cumulative Data - Slightly reduced padding */}
+              {/* Cumulative Data */}
               <div className="mt-1.5 p-2 bg-blue-50 rounded-md">
                 <h3 className="font-semibold text-sm">Cumulative Data</h3>
-                <div className="mt-1 grid grid-cols-2 gap-1">
+                <div className="mt-1 grid grid-cols-3 gap-1 text-center">
                   {[
                     { label: "Power-on", value: `${(Math.random() * 10000).toFixed(0)} h` },
                     { label: "Running", value: `${(Math.random() * 1000).toFixed(0)} h` },
                     { label: "Power Usage", value: `${(Math.random() * 100000).toFixed(0)} kWh`, highlight: true }
-                  ].map(({ label, value, highlight }, index) => (
-                    <div key={label} className={`bg-white p-1 rounded-md shadow-sm flex justify-between text-xs ${index === 2 ? "col-span-2" : ""}`}>
-                      <span>{label}</span>
-                      <span className={`font-bold ${highlight ? "text-green-600" : ""}`}>{value}</span>
+                  ].map(({ label, value, highlight }) => (
+                    <div key={label} className="bg-white p-1.5 rounded-md shadow-sm flex flex-col">
+                      <span className="text-xs text-gray-700">{label}</span>
+                      <span className={`text-sm font-bold ${highlight ? "text-green-600" : ""}`}>{value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Electrical Parameters with Gauges - Slightly reduced size */}
+              {/* Electrical Parameters with Gauges */}
               <div className="mt-1.5 p-2 bg-blue-50 rounded-md">
                 <h3 className="font-semibold text-sm">Electrical Parameters</h3>
                 <div className="grid grid-cols-2 gap-1 mt-1">
@@ -79,21 +79,21 @@ const Dashboard = () => {
                     const statusColor = getStatusColor(percentage);
                     
                     if (param.showGauge) {
-                      // Display with gauge - Slightly reduced height
+                      // Display with gauge
                       return (
                         <div key={param.name} className="bg-white p-1 rounded-md shadow-sm">
                           <p className="text-xs font-medium text-gray-700">{param.name}:</p>
                           
-                          {/* Gauge with slightly reduced height */}
+                          {/* Gauge */}
                           <div className="flex flex-col items-center">
-                            <div className="h-22 w-full">
+                            <div className="h-24 w-full">
                               <ResponsiveContainer width="100%" height="100%">
                                 <RadialBarChart 
                                   cx="50%" 
                                   cy="60%" 
                                   innerRadius="60%" 
                                   outerRadius="90%" 
-                                  barSize={9} 
+                                  barSize={10} 
                                   data={[
                                     {
                                       name: param.name,
@@ -134,7 +134,7 @@ const Dashboard = () => {
                         </div>
                       );
                     } else {
-                      // Display as text box - Normal padding
+                      // Display as text box
                       return (
                         <div key={param.name} className="bg-white p-1 rounded-md shadow-sm">
                           <p className="text-xs font-medium text-gray-700">{param.name}:</p>
@@ -172,25 +172,25 @@ const Dashboard = () => {
                 })()}
               </div>
 
-              {/* Control & Feedback - Moderate sizing */}
+              {/* Control & Feedback - Smaller boxes */}
               <div className="mt-1.5 p-2 bg-blue-50 rounded-md">
                 <h3 className="font-semibold text-sm">Control & Feedback</h3>
-                <div className="mt-1 grid grid-cols-2 gap-1">
+                <div className="mt-1 grid grid-cols-4 gap-1">
                   {[
                     { label: "AI1", value: `${(Math.random() * 10).toFixed(1)} bar` },
                     { label: "AI2", value: `${(Math.random() * 10).toFixed(1)} bar` },
                     { label: "Set Pressure", value: `${(Math.random() * 10).toFixed(1)} bar` },
                     { label: "Feedback", value: `${(Math.random() * 10).toFixed(1)} bar` }
                   ].map(({ label, value }) => (
-                    <div key={label} className="bg-white p-1 rounded-md shadow-sm text-center">
+                    <div key={label} className="bg-white p-0.5 rounded-md shadow-sm text-center">
                       <span className="text-xs text-gray-700">{label}</span>
-                      <p className="text-blue-600 font-bold text-sm">{value}</p>
+                      <p className="text-blue-600 font-bold text-xs">{value}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Terminal States - Inline to save space */}
+              {/* Terminal States */}
               <div className="mt-1.5 p-2 bg-blue-50 rounded-md">
                 <h3 className="font-semibold text-sm">Terminal States</h3>
                 <div className="mt-1 grid grid-cols-2 gap-1">
