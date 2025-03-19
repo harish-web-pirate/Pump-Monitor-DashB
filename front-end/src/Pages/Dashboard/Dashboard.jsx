@@ -18,11 +18,11 @@ const Dashboard = () => {
   // Parameter configurations with max values and units
   const electricalParams = [
     { name: "Running Frequency", maxValue: 60, unit: "Hz", showGauge: true },
-    { name: "Bus Voltage", maxValue: 600, unit: "V", showGauge: true },
-    { name: "Output Voltage", maxValue: 480, unit: "V", showGauge: true },
-    { name: "Output Current", maxValue: 100, unit: "A", showGauge: true },
-    { name: "Output Power", maxValue: 1000, unit: "Watt", showGauge: false },
-    { name: "Output Torque", maxValue: 200, unit: "Newton meter", showGauge: false }
+    { name: "Output Torque", maxValue: 200, unit: "Newton meter", showGauge: true },
+    { name: "Bus Voltage", maxValue: 600, unit: "V", showGauge: false },
+    { name: "Output Voltage", maxValue: 480, unit: "V", showGauge: false },
+    { name: "Output Current", maxValue: 100, unit: "A", showGauge: false },
+    { name: "Output Power", maxValue: 1000, unit: "Watt", showGauge: false }
   ];
 
   // Separate running speed data
@@ -39,17 +39,34 @@ const Dashboard = () => {
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Navbar - Reduced padding */}
-        <header className="bg-white shadow-sm p-2 flex justify-between items-center">
-          <h1 className="text-lg font-semibold pl-4">Power Monitoring Dashboard</h1>
-          <button className="bg-blue-600 text-white px-2 py-1 rounded-md text-sm">User</button>
+        {/* Navbar - Made bigger */}
+        <header className="bg-white shadow-sm p-3 flex justify-between items-center">
+          <h1 className="text-xl font-semibold pl-4">Power Monitoring Dashboard</h1>
+          <button className="bg-blue-600 text-white px-3 py-1.5 rounded-md">User</button>
         </header>
 
-        {/* Dashboard Content - Reduced padding and gap */}
+        {/* Dashboard Content */}
         <main className="p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 overflow-auto">
           {pumps.map((pump) => (
             <div key={pump} className="bg-white shadow-sm rounded-lg p-2">
               <h2 className="text-lg font-semibold text-center text-blue-600">Pump {pump}</h2>
+
+              {/* Cumulative Data - Moved above electrical parameters */}
+              <div className="mt-2 p-2 bg-blue-50 rounded-md">
+                <h3 className="font-semibold text-sm">Cumulative Data</h3>
+                <div className="mt-1 grid grid-cols-2 gap-1">
+                  {[
+                    { label: "Power-on", value: `${(Math.random() * 10000).toFixed(0)} h` },
+                    { label: "Running", value: `${(Math.random() * 1000).toFixed(0)} h` },
+                    { label: "Power Usage", value: `${(Math.random() * 100000).toFixed(0)} kWh`, highlight: true }
+                  ].map(({ label, value, highlight }, index) => (
+                    <div key={label} className={`bg-white p-1 rounded-md shadow-sm flex justify-between text-xs ${index === 2 ? "col-span-2" : ""}`}>
+                      <span>{label}</span>
+                      <span className={`font-bold ${highlight ? "text-green-600" : ""}`}>{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               {/* Electrical Parameters with Gauges - Reduced padding */}
               <div className="mt-2 p-2 bg-blue-50 rounded-md">
@@ -62,7 +79,7 @@ const Dashboard = () => {
                     const statusColor = getStatusColor(percentage);
                     
                     if (param.showGauge) {
-                      // Display with gauge - Reduced height
+                      // Display with gauge - Only for Running Frequency and Output Torque
                       return (
                         <div key={param.name} className="bg-white p-1 rounded-md shadow-sm">
                           <p className="text-xs font-medium text-gray-700">{param.name}:</p>
@@ -117,7 +134,7 @@ const Dashboard = () => {
                         </div>
                       );
                     } else {
-                      // Display as text box (for Output Power, Output Torque)
+                      // Display as text box (for Bus Voltage, Output Voltge, Output Current, Output Power)
                       return (
                         <div key={param.name} className="bg-white p-1 rounded-md shadow-sm">
                           <p className="text-xs font-medium text-gray-700">{param.name}:</p>
@@ -153,41 +170,6 @@ const Dashboard = () => {
                     </div>
                   );
                 })()}
-
-                {/* Compact legend */}
-                <div className="mt-2 bg-white p-1 rounded-md shadow-sm">
-                  <div className="flex justify-between items-center text-xs">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
-                      <span>Low</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full mr-1"></div>
-                      <span>Medium</span>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-1"></div>
-                      <span>High</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Cumulative Data - Reduced to 2 columns */}
-              <div className="mt-2 p-2 bg-blue-50 rounded-md">
-                <h3 className="font-semibold text-sm">Cumulative Data</h3>
-                <div className="mt-1 grid grid-cols-2 gap-1">
-                  {[
-                    { label: "Power-on", value: `${(Math.random() * 10000).toFixed(0)} h` },
-                    { label: "Running", value: `${(Math.random() * 1000).toFixed(0)} h` },
-                    { label: "Power Usage", value: `${(Math.random() * 100000).toFixed(0)} kWh`, highlight: true }
-                  ].map(({ label, value, highlight }, index) => (
-                    <div key={label} className={`bg-white p-1 rounded-md shadow-sm flex justify-between text-xs ${index === 2 ? "col-span-2" : ""}`}>
-                      <span>{label}</span>
-                      <span className={`font-bold ${highlight ? "text-green-600" : ""}`}>{value}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
 
               {/* Control & Feedback - More compact */}
@@ -228,4 +210,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard; 
